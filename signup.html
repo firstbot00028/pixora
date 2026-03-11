@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Pixora Signup</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+    <title>Pixora Signup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <div class="login-container">
+    <h1>Pixora</h1>
 
-<h1>Pixora</h1>
+    <input type="text" id="new-username" placeholder="Username">
+    <input type="text" id="phone" placeholder="Phone number">
+    <input type="password" id="new-password" placeholder="Password">
 
-<input placeholder="Username">
-<input placeholder="Phone number">
-<input type="password" placeholder="Password">
+    <button type="button" onclick="signup()">Sign up 💎</button>
 
-<button>Sign up</button>
-
+    <p style="margin-top: 20px; color: #ccc;">Already have an account? <a href="login.html" style="color: gold;">Login</a></p>
 </div>
+
+<script src="app.js"></script>
 
 </body>
 </html>
