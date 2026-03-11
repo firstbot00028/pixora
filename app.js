@@ -2,76 +2,90 @@
 
 function login(){
 
-let username=document.getElementById("username").value
-let password=document.getElementById("password").value
+let username = document.getElementById("username").value
+let password = document.getElementById("password").value
 
-if(username==="AiraAdam" && password==="Aira123"){
+if(username === "AiraAdam" && password === "Aira123"){
 
-alert("Welcome Founder")
+alert("Welcome Founder 🚀")
 
-window.location="home.html"
+window.location.href = "home.html"
 
 }else{
 
-alert("Invalid login")
+alert("Invalid login ❌")
 
 }
 
 }
 
 
-// SIMPLE MESSAGE SYSTEM
+
+// MESSAGE SYSTEM
 
 function send(){
 
-let msg=document.getElementById("msg").value
+let msg = document.getElementById("msg").value
 
-if(msg==="") return
+if(msg === "") return
 
-let chat=document.getElementById("chat")
+let chat = document.getElementById("chat")
 
-let div=document.createElement("div")
+let div = document.createElement("div")
 
-div.innerText=msg
+div.innerText = msg
 
 chat.appendChild(div)
 
-document.getElementById("msg").value=""
+document.getElementById("msg").value = ""
 
 }
 
 
-// SIMPLE POST CREATE (frontend demo)
+
+// CREATE POST
 
 function createPost(){
 
-let caption=document.getElementById("caption").value
+let caption = document.getElementById("caption").value
 
-let feed=document.getElementById("feed")
+if(caption === "") return
 
-let post=document.createElement("div")
+let feed = document.getElementById("feed")
 
-post.className="post"
+let post = document.createElement("div")
 
-post.innerHTML=`
+post.className = "post"
+
+post.innerHTML = `
 <h4>@AiraAdam <span class="redtick">✔</span></h4>
 <p>${caption}</p>
 `
 
 feed.prepend(post)
 
+document.getElementById("caption").value = ""
+
 }
+
+
+
+// PROFILE PHOTO UPLOAD
+
 function uploadPic(event){
 
-let reader=new FileReader()
+let file = event.target.files[0]
 
-reader.onload=function(){
+if(!file) return
 
-let output=document.getElementById("profilePic")
-output.src=reader.result
+let reader = new FileReader()
+
+reader.onload = function(){
+
+document.getElementById("profilePic").src = reader.result
 
 }
 
-reader.readAsDataURL(event.target.files[0])
+reader.readAsDataURL(file)
 
 }
