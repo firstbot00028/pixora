@@ -3,11 +3,11 @@
     display: flex;
     align-items: center;
     padding: 20px;
-    max-width: 500px;
+    max-width: 450px;
     margin: auto;
 }
 
-/* 🔱 2. PROFILE IMAGE (With Premium Glow) */
+/* 🔱 2. PROFILE IMAGE */
 .profile-pic-container {
     flex: 0 0 90px;
     margin-right: 30px;
@@ -18,10 +18,9 @@
     height: 90px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #ff2a6d;
+    border: 3px solid #ff2a6d; /* Ninte aa pink border */
     padding: 3px;
     background: white;
-    box-shadow: 0 4px 12px rgba(255, 42, 109, 0.2);
 }
 
 /* 🔱 3. STATS SECTION (Followers side-il varaan) */
@@ -39,47 +38,47 @@
 
 .stats h3 {
     margin: 0;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     color: #262626;
 }
 
 .stats p {
     margin: 0;
-    font-size: 12px;
+    font-size: 11px;
     color: gray;
 }
 
-/* 🔱 4. REAL SCALLOPED RED TICK (Instagram Style) */
+/* 🔱 4. REAL SCALLOPED RED TICK (Instagram Style Blue-Red) */
 .redtick {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 18px;
-    height: 18px;
-    background-color: red; /* Blue-inu pakaram Pure Red! 🛡️ */
+    width: 16px;
+    height: 16px;
+    background-color: red; /* Blue-inu pakaram Pure Red! */
     color: white; 
-    font-size: 10px;
+    font-size: 9px;
     margin-left: 5px;
     position: relative;
     vertical-align: middle;
-    /* 🦾 The Scalloped Circle Logic (Real Look) */
+    /* Real Scalloped Shape Logic */
     clip-path: polygon(100% 50%, 94.46% 65.14%, 94.46% 81.86%, 79.31% 87.39%, 69.13% 100%, 50% 98.41%, 30.87% 100%, 20.69% 87.39%, 5.54% 81.86%, 5.54% 65.14%, 0% 50%, 5.54% 34.86%, 5.54% 18.14%, 20.69% 12.61%, 30.87% 0%, 50% 1.59%, 69.13% 0%, 79.31% 12.61%, 94.46% 18.14%, 94.46% 34.86%);
 }
 
 .redtick::after {
-    content: "✔";
+    content: "✔"; /* Tick mark symbol */
 }
 
-/* 🔱 5. USERNAME INFO (Stats-inu thazhe) */
+/* 🔱 5. USERNAME INFO */
 .user-info {
-    max-width: 500px;
+    max-width: 450px;
     margin: auto;
     padding: 0 20px;
 }
 
 #profileName {
-    margin: 5px 0;
+    margin: 10px 0 5px 0;
     font-size: 18px;
     font-weight: 600;
     display: flex;
