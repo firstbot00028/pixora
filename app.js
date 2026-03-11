@@ -1,5 +1,5 @@
 // 🔱 Ninte Magic Cloudflare URL (Termux-il active aaya link)
-const BACKEND_URL = "https://structures-turns-possibility-combined.trycloudflare.com";
+const BACKEND_URL = "https://cape-billion-uncle-mrna.trycloudflare.com";
 
 // 🔱 1. SIGNUP FUNCTION
 async function signup() {
