@@ -1,18 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Pixora Reels</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixora - Reels</title>
+    <style>
+        /* 🔱 INTERNAL PREMIUM REELS CSS */
+        body {
+            margin: 0;
+            font-family: -apple-system, sans-serif;
+            background: #000;
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+        }
 
+        /* 🦾 Full Screen Video Container */
+        .reels-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Reels look kittan */
+        }
+
+        /* 🦾 Overlays (Username, Caption) */
+        .reels-overlay {
+            position: absolute;
+            bottom: 80px;
+            left: 15px;
+            z-index: 10;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .user-info h4 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* 🔱 REAL SCALLOPED RED TICK */
+        .redtick {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 14px; height: 14px; background-color: red; color: white; 
+            font-size: 8px; margin-left: 6px; position: relative;
+            clip-path: polygon(100% 50%, 94.46% 65.14%, 94.46% 81.86%, 79.31% 87.39%, 69.13% 100%, 50% 98.41%, 30.87% 100%, 20.69% 87.39%, 5.54% 81.86%, 5.54% 65.14%, 0% 50%, 5.54% 34.86%, 5.54% 18.14%, 20.69% 12.61%, 30.87% 0%, 50% 1.59%, 69.13% 0%, 79.31% 12.61%, 94.46% 18.14%, 94.46% 34.86%);
+        }
+        .redtick::after { content: "✔"; }
+
+        .caption {
+            font-size: 14px;
+            color: #efefef;
+        }
+
+        /* 🦾 Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            z-index: 100;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            font-size: 24px;
+            filter: invert(1);
+            transition: 0.2s;
+        }
+        
+        .reels-icon {
+            border-bottom: 2px solid white;
+        }
+
+    </style>
+</head>
 <body>
 
-<h2>Reels</h2>
+    <div class="reels-container">
+        <video autoplay muted loop playsinline id="reelVideo">
+            <source src="sample.mp4" type="video/mp4">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        </video>
 
-<video controls width="100%">
-<source src="sample.mp4">
-</video>
+        <div class="reels-overlay">
+            <div class="user-info">
+                <h4 id="reelUser">@AiraAdam</h4>
+                <span class="redtick"></span>
+            </div>
+            <p class="caption">Making Pixora Empire with 99.5 IQ! 🦾⚡️ #Pixora #Sovereign</p>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="home.html">🏠</a>
+        <a href="reels.html" class="reels-icon">🎬</a>
+        <a href="create.html">➕</a>
+        <a href="messages.html">💬</a>
+        <a href="profile.html">👤</a>
+    </div>
+
+    <script>
+        // Load logged in user name for reel
+        let user = localStorage.getItem("currentUser") || "User";
+        document.getElementById("reelUser").innerText = "@" + user;
+    </script>
 
 </body>
 </html>
