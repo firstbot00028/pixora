@@ -1,4 +1,4 @@
-// 🔱 Cloudflare URL (Update this if tunnel restarts)
+// 🔱 Cloudflare URL (Backend connection)
 const BACKEND_URL = "https://cape-billion-uncle-mrna.trycloudflare.com";
 
 // 🔱 1. SIGNUP FUNCTION
@@ -17,12 +17,9 @@ async function signup() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: user, password: pass })
         });
-
         const result = await response.json();
-
         if (response.ok) {
             alert("Signup Success! Inni Login cheythu mass kaanikku! 💎");
-            if (typeof toggleForm === "function") toggleForm();
         } else {
             alert(result.message);
         }
@@ -31,20 +28,19 @@ async function signup() {
     }
 }
 
-// 🔱 2. LOGIN FUNCTION (Updated for Instant Username)
+// 🔱 2. LOGIN FUNCTION (Updated for Instant Username Storage)
 async function login() {
     let user = document.getElementById("username").value;
     let pass = document.getElementById("password").value;
 
-    // Local Storage-il Instant aayi peru save cheyyunnu
-    const saveUserLocally = (u) => {
-        localStorage.setItem("currentUser", u);
+    const finalizeLogin = (u) => {
+        localStorage.setItem("currentUser", u); // 🔱 Instant Storage!
+        alert(`Welcome ${u}! 🚀`);
+        window.location.href = "home.html";
     };
 
     if(user === "AiraAdam" && pass === "Aira123") {
-        saveUserLocally("AiraAdam");
-        alert("Welcome Founder 🚀");
-        window.location.href = "home.html";
+        finalizeLogin("AiraAdam");
         return;
     }
 
@@ -54,22 +50,17 @@ async function login() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: user, password: pass })
         });
-
-        const result = await response.json();
-
         if (response.ok) {
-            saveUserLocally(user); // 🔱 Login success aayaal udane peru save cheyyum
-            alert("Login Success! 💎");
-            window.location.href = "home.html";
+            finalizeLogin(user); // 🔱 Login success aayaal udane peru save cheyyum
         } else {
-            alert(result.message);
+            alert("Invalid Credentials! ❌");
         }
     } catch (error) {
         alert("Server connection failed! 🚫");
     }
 }
 
-// 🔱 3. PROFILE PHOTO UPLOAD (Updated for Permanent Storage)
+// 🔱 3. PROFILE PHOTO UPLOAD (Permanent Storage Logic)
 function uploadPic(event) {
     let file = event.target.files[0];
     if(!file) return;
@@ -77,45 +68,52 @@ function uploadPic(event) {
     let reader = new FileReader();
     reader.onload = function() {
         let imageData = reader.result;
-        document.getElementById("profilePic").src = imageData;
-        // 🔱 Image browser memory-il save cheyyunnu (Reload-ine thadayaan)
-        localStorage.setItem("savedProfilePic", imageData);
+        let picDisplay = document.getElementById("profilePic");
+        if(picDisplay) {
+            picDisplay.src = imageData;
+            // 🔱 Browser memory-il permanent aayi save cheyyunnu
+            localStorage.setItem("savedProfilePic", imageData);
+        }
     };
     reader.readAsDataURL(file);
 }
 
-// 🔱 4. LOAD PROFILE DATA (Ithu oro page load aakumpolum work aakum)
+// 🔱 4. LOAD DATA (Instant Recovery on Page Load)
 window.onload = function() {
     let loggedUser = localStorage.getItem("currentUser");
     let savedPic = localStorage.getItem("savedProfilePic");
 
-    // Profile page-il name set cheyyaan
-    if (loggedUser && document.getElementById("userDisplay")) {
-        document.getElementById("userDisplay").innerHTML = `@${loggedUser} <span id="verifiedTick" class="redtick">✔</span>`;
+    // Profile Page IDs: userDisplay or profileName
+    let nameElement = document.getElementById("profileName") || document.getElementById("userDisplay");
+    let followers = document.getElementById("profileFollowers") || document.getElementById("followerCount");
+
+    if (loggedUser && nameElement) {
+        nameElement.innerHTML = `@${loggedUser} <span id="verifiedTick" class="redtick">✔</span>`;
         
-        // Founder logic for ticks and followers
+        // Founder Logic (Red Tick & 100M)
         if (loggedUser === "AiraAdam") {
-            if(document.getElementById("verifiedTick")) document.getElementById("verifiedTick").style.display = "inline";
-            if(document.getElementById("followerCount")) document.getElementById("followerCount").innerText = "100M";
+            let tick = document.getElementById("verifiedTick");
+            if(tick) tick.style.display = "inline";
+            if(followers) followers.innerText = "100M";
         } else {
-            if(document.getElementById("followerCount")) document.getElementById("followerCount").innerText = "0";
+            if(followers) followers.innerText = "0";
         }
     }
 
-    // Saved image load cheyyaan
+    // 🔱 Image Recovery (Reload-ine thadayaam)
     if (savedPic && document.getElementById("profilePic")) {
         document.getElementById("profilePic").src = savedPic;
     }
 };
 
-// 🔱 5. MESSAGE & POST SYSTEM (Old logic - clean and sharp)
+// 🔱 5. MESSAGE & POST SYSTEM
 function send() {
     let msg = document.getElementById("msg").value;
     if(msg === "") return;
     let chat = document.getElementById("chat");
     let div = document.createElement("div");
-    div.style.padding = "10px"; div.style.margin = "5px"; div.style.background = "#1a1a1a";
-    div.style.color = "#00ff00"; div.style.borderRadius = "8px"; div.innerText = `> ${msg}`;
+    div.className = "msg-box";
+    div.innerText = `> ${msg}`;
     chat.appendChild(div);
     document.getElementById("msg").value = "";
     chat.scrollTop = chat.scrollHeight; 
