@@ -1,35 +1,87 @@
-/* 🔱 RED VERIFICATION TICK (PURE LOOK) */
-.redtick {
-    color: red; /* Tick mathram chuvappil thilagan */
-    font-weight: bold;
-    font-size: 16px; /* Size kuracchu koodi nalla "Seen" aakki */
-    margin-left: 5px;
-    background: none; /* Pazhaya circle background njan 'Ban' cheythu */
-    border: none;
-    border-radius: 0;
-    padding: 0;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-/* 🔱 PROFILE IMAGE ENHANCEMENT */
-.profile img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #ff2a6d; /* Ninte aa pink/red border */
-    padding: 3px; /* Image-um border-um thammil oru cheriya gap kittan */
-    background: white;
-    box-shadow: 0 4px 15px rgba(255, 42, 109, 0.3); /* Cheriya oru "Glow" */
-}
-
-/* 🔱 PROFILE NAME (USER DISPLAY) */
-#profileName, #userDisplay {
+/* 🔱 1. PROFILE HEADER (Pic-um Stats-um side-by-side aakkan) */
+.profile-header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-top: 15px;
-    font-size: 22px;
+    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+}
+
+/* 🔱 2. PROFILE IMAGE (With Premium Glow) */
+.profile-pic-container {
+    flex: 0 0 90px;
+    margin-right: 30px;
+}
+
+.profile-pic-container img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ff2a6d;
+    padding: 3px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(255, 42, 109, 0.2);
+}
+
+/* 🔱 3. STATS SECTION (Followers side-il varaan) */
+.stats {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.stats div {
+    display: flex;
+    flex-direction: column;
+}
+
+.stats h3 {
+    margin: 0;
+    font-size: 18px;
     font-weight: bold;
+    color: #262626;
+}
+
+.stats p {
+    margin: 0;
+    font-size: 12px;
+    color: gray;
+}
+
+/* 🔱 4. REAL SCALLOPED RED TICK (Instagram Style) */
+.redtick {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background-color: red; /* Blue-inu pakaram Pure Red! 🛡️ */
+    color: white; 
+    font-size: 10px;
+    margin-left: 5px;
+    position: relative;
+    vertical-align: middle;
+    /* 🦾 The Scalloped Circle Logic (Real Look) */
+    clip-path: polygon(100% 50%, 94.46% 65.14%, 94.46% 81.86%, 79.31% 87.39%, 69.13% 100%, 50% 98.41%, 30.87% 100%, 20.69% 87.39%, 5.54% 81.86%, 5.54% 65.14%, 0% 50%, 5.54% 34.86%, 5.54% 18.14%, 20.69% 12.61%, 30.87% 0%, 50% 1.59%, 69.13% 0%, 79.31% 12.61%, 94.46% 18.14%, 94.46% 34.86%);
+}
+
+.redtick::after {
+    content: "✔";
+}
+
+/* 🔱 5. USERNAME INFO (Stats-inu thazhe) */
+.user-info {
+    max-width: 500px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+#profileName {
+    margin: 5px 0;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
 }
