@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Messages</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h2>Messages</h2>
+
+<div id="chat"></div>
+
+<input id="msg">
+
+<button onclick="send()">Send</button>
+
+<script>
+
+function send(){
+
+let text=document.getElementById("msg").value
+
+let div=document.createElement("div")
+
+div.innerText=text
+
+document.getElementById("chat").appendChild(div)
+
+}
+
+</script>
+
+</body>
+</html>
