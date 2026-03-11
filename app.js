@@ -28,13 +28,13 @@ async function signup() {
     }
 }
 
-// 🔱 2. LOGIN FUNCTION (Updated for Instant Username Storage)
+// 🔱 2. LOGIN FUNCTION
 async function login() {
     let user = document.getElementById("username").value;
     let pass = document.getElementById("password").value;
 
     const finalizeLogin = (u) => {
-        localStorage.setItem("currentUser", u); // 🔱 Instant Storage!
+        localStorage.setItem("currentUser", u); 
         alert(`Welcome ${u}! 🚀`);
         window.location.href = "home.html";
     };
@@ -51,7 +51,7 @@ async function login() {
             body: JSON.stringify({ username: user, password: pass })
         });
         if (response.ok) {
-            finalizeLogin(user); // 🔱 Login success aayaal udane peru save cheyyum
+            finalizeLogin(user); 
         } else {
             alert("Invalid Credentials! ❌");
         }
@@ -60,10 +60,12 @@ async function login() {
     }
 }
 
-// 🔱 3. PROFILE PHOTO UPLOAD (Permanent Storage Logic)
+// 🔱 3. PROFILE PHOTO UPLOAD (New Multi-User Logic)
 function uploadPic(event) {
     let file = event.target.files[0];
-    if(!file) return;
+    let loggedUser = localStorage.getItem("currentUser"); // 🦾 User-e check cheyyunnu
+    
+    if(!file || !loggedUser) return;
 
     let reader = new FileReader();
     reader.onload = function() {
@@ -71,38 +73,45 @@ function uploadPic(event) {
         let picDisplay = document.getElementById("profilePic");
         if(picDisplay) {
             picDisplay.src = imageData;
-            // 🔱 Browser memory-il permanent aayi save cheyyunnu
-            localStorage.setItem("savedProfilePic", imageData);
+            // 🔱 DIAMOND LOGIC: Oro user-num prathyekam key (e.g., savedPic_AiraAdam)
+            localStorage.setItem("savedPic_" + loggedUser, imageData);
         }
     };
     reader.readAsDataURL(file);
 }
 
-// 🔱 4. LOAD DATA (Instant Recovery on Page Load)
+// 🔱 4. LOAD DATA (Instant recovery based on WHO is logged in)
 window.onload = function() {
     let loggedUser = localStorage.getItem("currentUser");
-    let savedPic = localStorage.getItem("savedProfilePic");
 
-    // Profile Page IDs: userDisplay or profileName
-    let nameElement = document.getElementById("profileName") || document.getElementById("userDisplay");
-    let followers = document.getElementById("profileFollowers") || document.getElementById("followerCount");
-
-    if (loggedUser && nameElement) {
-        nameElement.innerHTML = `@${loggedUser} <span id="verifiedTick" class="redtick">✔</span>`;
-        
-        // Founder Logic (Red Tick & 100M)
-        if (loggedUser === "AiraAdam") {
-            let tick = document.getElementById("verifiedTick");
-            if(tick) tick.style.display = "inline";
-            if(followers) followers.innerText = "100M";
-        } else {
-            if(followers) followers.innerText = "0";
+    if (loggedUser) {
+        // 1. Recover User-Specific Image
+        let userPic = localStorage.getItem("savedPic_" + loggedUser);
+        let picDisplay = document.getElementById("profilePic");
+        if (userPic && picDisplay) {
+            picDisplay.src = userPic;
+        } else if (picDisplay) {
+            // Default image if no pic saved
+            picDisplay.src = "https://via.placeholder.com/120";
         }
-    }
 
-    // 🔱 Image Recovery (Reload-ine thadayaam)
-    if (savedPic && document.getElementById("profilePic")) {
-        document.getElementById("profilePic").src = savedPic;
+        // 2. Recover Name and Stats
+        let nameElement = document.getElementById("profileName") || document.getElementById("userDisplay");
+        let followers = document.getElementById("profileFollowers") || document.getElementById("followerCount");
+
+        if (nameElement) {
+            nameElement.innerHTML = `@${loggedUser} <span id="verifiedTick" class="redtick">✔</span>`;
+            
+            if (loggedUser === "AiraAdam") {
+                let tick = document.getElementById("verifiedTick");
+                if(tick) tick.style.display = "inline";
+                if(followers) followers.innerText = "100M";
+            } else {
+                let tick = document.getElementById("verifiedTick");
+                if(tick) tick.style.display = "none"; // 🛡️ Normal users-inu red tick hide cheyyunnu
+                if(followers) followers.innerText = "0";
+            }
+        }
     }
 };
 
