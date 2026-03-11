@@ -1,60 +1,121 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Pixora - Profile</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <title>Pixora - Profile</title>
     <style>
-        .redtick { color: #ff0000; font-weight: bold; margin-left: 5px; display: none; }
+        /* 🔱 THE SOVEREIGN DARK THEME CSS */
+        body { margin: 0; font-family: -apple-system, sans-serif; background: #000000; color: white; padding-bottom: 80px; }
+        
+        /* 🦾 Header Layout (Pic side-il aakkan) */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            padding: 30px 20px 10px 20px;
+            max-width: 450px;
+            margin: auto;
+        }
+
+        .profile-pic-container { flex: 0 0 90px; margin-right: 30px; position: relative; }
+
+        .profile-pic-container img {
+            width: 90px; height: 90px; border-radius: 50%;
+            object-fit: cover; border: 3.5px solid #ff2a6d; padding: 3px; background: white;
+            box-shadow: 0 0 15px rgba(255, 42, 109, 0.3);
+        }
+
+        /* 🦾 Stats Side-il varan */
+        .stats { display: flex; flex: 1; justify-content: space-between; text-align: center; }
+        .stats div { display: flex; flex-direction: column; }
+        .stats h3 { margin: 0; font-size: 18px; font-weight: bold; color: #fff; }
+        .stats p { margin: 0; font-size: 12px; color: #888; }
+
+        /* 🦾 Bio & Info Section */
+        .user-info { max-width: 450px; margin: auto; padding: 10px 25px; }
+        #profileName { margin: 0; font-size: 20px; font-weight: bold; display: flex; align-items: center; }
+        
+        .bio-box { margin-top: 8px; font-size: 14px; color: #efefef; line-height: 1.4; }
+        .bio-box span { color: #ff2a6d; font-weight: 600; }
+
+        /* 🔱 REAL SCALLOPED RED TICK */
+        .redtick {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 16px; height: 16px; background-color: red; color: white; 
+            font-size: 9px; margin-left: 6px; position: relative;
+            clip-path: polygon(100% 50%, 94.46% 65.14%, 94.46% 81.86%, 79.31% 87.39%, 69.13% 100%, 50% 98.41%, 30.87% 100%, 20.69% 87.39%, 5.54% 81.86%, 5.54% 65.14%, 0% 50%, 5.54% 34.86%, 5.54% 18.14%, 20.69% 12.61%, 30.87% 0%, 50% 1.59%, 69.13% 0%, 79.31% 12.61%, 94.46% 18.14%, 94.46% 34.86%);
+        }
+        .redtick::after { content: "✔"; }
+
+        /* 🦾 Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed; bottom: 0; width: 100%; background: #000;
+            border-top: 1px solid #1a1a1a; display: flex; justify-content: space-around;
+            padding: 15px 0; z-index: 1000;
+        }
+        .bottom-nav a { text-decoration: none; font-size: 24px; filter: invert(1); transition: 0.2s; }
+
+        input[type="file"] { font-size: 10px; margin-top: 10px; opacity: 0.5; color: white; border: none; }
     </style>
 </head>
-
 <body>
 
-<div class="profile">
-    <img id="profilePic" src="https://via.placeholder.com/120">
-    <input type="file" onchange="uploadPic(event)">
-    
-    <h2 id="profileName">@Loading...</h2>
-</div>
+    <div class="profile-header">
+        <div class="profile-pic-container">
+            <img id="profilePic" src="https://via.placeholder.com/120">
+        </div>
+        
+        <div class="stats">
+            <div><h3 id="postCount">1</h3><p>Posts</p></div>
+            <div><h3 id="profileFollowers">100M</h3><p>Followers</p></div>
+            <div><h3>1</h3><p>Following</p></div>
+        </div>
+    </div>
 
-<div class="stats">
-    <div><h3>0</h3><p>Posts</p></div>
-    <div><h3 id="profileFollowers">0</h3><p>Followers</p></div>
-    <div><h3>0</h3><p>Following</p></div>
-</div>
+    <div class="user-info">
+        <h2 id="profileName">@Loading... <span id="profileTick" class="redtick" style="display:none;"></span></h2>
+        
+        <div class="bio-box">
+            <span>Sovereign Founder of Pixora</span><br>
+            Exploring the Digital Empire 🦾⚡️<br>
+            Kerala | Tech Enthusiast 🏴
+        </div>
 
-<script src="app.js"></script>
+        <input type="file" onchange="uploadPic(event)">
+    </div>
 
-<script>
-    // 🔱 Sovereign Profile Fix Script
-    document.addEventListener("DOMContentLoaded", function() {
-        // App.js load aakan cheriya oru time delay kodukkunnu
-        setTimeout(() => {
-            let loggedUser = localStorage.getItem("currentUser");
-            let nameDisplay = document.getElementById("profileName");
-            let followers = document.getElementById("profileFollowers");
+    <div class="bottom-nav">
+        <a href="home.html">🏠</a>
+        <a href="reels.html">🎬</a>
+        <a href="create.html">➕</a>
+        <a href="messages.html">💬</a>
+        <a href="profile.html" style="border-bottom: 2px solid white;">👤</a>
+    </div>
 
-            if (loggedUser) {
-                // User-inte peru set cheyyunnu
-                nameDisplay.innerHTML = `@${loggedUser} <span id="profileTick" class="redtick">✔</span>`;
-                
-                // Founder check
-                if (loggedUser === "AiraAdam") {
-                    document.getElementById("profileTick").style.display = "inline";
-                    followers.innerText = "100M";
-                } else {
-                    document.getElementById("profileTick").style.display = "none";
-                    followers.innerText = "0";
+    <script src="app.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(() => {
+                let loggedUser = localStorage.getItem("currentUser");
+                let nameDisplay = document.getElementById("profileName");
+                let followers = document.getElementById("profileFollowers");
+                let tick = document.getElementById("profileTick");
+
+                if (loggedUser) {
+                    nameDisplay.innerHTML = `@${loggedUser} <span id="profileTick" class="redtick"></span>`;
+                    
+                    if (loggedUser === "AiraAdam") {
+                        document.getElementById("profileTick").style.display = "inline-flex";
+                        followers.innerText = "100M";
+                    } else {
+                        document.getElementById("profileTick").style.display = "none";
+                        followers.innerText = "0";
+                    }
                 }
-            } else {
-                // User illa enkil mathram login page-ilekku
-                console.log("No user found, staying for debug...");
-                // window.location.href = "index.html"; // Ithu temporary aayi comment cheythu, error check cheyyan
-            }
-        }, 100); 
-    });
-</script>
+            }, 200); 
+        });
+    </script>
 
 </body>
 </html>
