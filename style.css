@@ -1,221 +1,35 @@
-/* GLOBAL */
-
-body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:#fafafa;
+/* 🔱 RED VERIFICATION TICK (PURE LOOK) */
+.redtick {
+    color: red; /* Tick mathram chuvappil thilagan */
+    font-weight: bold;
+    font-size: 16px; /* Size kuracchu koodi nalla "Seen" aakki */
+    margin-left: 5px;
+    background: none; /* Pazhaya circle background njan 'Ban' cheythu */
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-
-/* LOGIN PAGE */
-
-.login-container{
-width:320px;
-margin:auto;
-margin-top:100px;
-text-align:center;
-background:white;
-padding:30px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
+/* 🔱 PROFILE IMAGE ENHANCEMENT */
+.profile img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ff2a6d; /* Ninte aa pink/red border */
+    padding: 3px; /* Image-um border-um thammil oru cheriya gap kittan */
+    background: white;
+    box-shadow: 0 4px 15px rgba(255, 42, 109, 0.3); /* Cheriya oru "Glow" */
 }
 
-.logo{
-margin-bottom:20px;
-}
-
-.icon{
-font-size:28px;
-background:linear-gradient(45deg,#833ab4,#fd1d1d,#fcb045);
-color:white;
-width:60px;
-height:60px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-margin:auto;
-}
-
-.logo h1{
-margin:10px 0 0 0;
-font-size:38px;
-background:linear-gradient(45deg,#833ab4,#fd1d1d,#fcb045);
--webkit-background-clip:text;
-color:transparent;
-}
-
-.logo p{
-color:gray;
-font-size:14px;
-}
-
-
-/* INPUT */
-
-input, textarea{
-width:100%;
-padding:10px;
-margin:8px 0;
-border:1px solid #ccc;
-border-radius:6px;
-font-size:14px;
-}
-
-
-/* BUTTON */
-
-button{
-background:#ff2a6d;
-color:white;
-border:none;
-padding:10px;
-width:100%;
-border-radius:6px;
-cursor:pointer;
-font-size:15px;
-}
-
-button:hover{
-background:#e6005c;
-}
-
-
-/* NAVBAR */
-
-.navbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:12px;
-background:white;
-border-bottom:1px solid #ddd;
-position:sticky;
-top:0;
-}
-
-.navbar h2{
-margin:0;
-}
-
-
-/* FEED */
-
-.feed{
-max-width:400px;
-margin:auto;
-padding-bottom:80px;
-}
-
-.post{
-background:white;
-margin:15px;
-border-radius:10px;
-box-shadow:0 0 5px rgba(0,0,0,0.1);
-padding:10px;
-}
-
-.post img{
-width:100%;
-border-radius:10px;
-margin-top:5px;
-}
-
-.post h4{
-margin:0;
-}
-
-.post p{
-font-size:14px;
-}
-
-
-/* PROFILE SECTION */
-
-.profile{
-text-align:center;
-margin-top:30px;
-}
-
-.profile img{
-width:120px;
-height:120px;
-border-radius:50%;
-object-fit:cover;
-border:3px solid #ff2a6d;
-}
-
-.profile input{
-margin-top:10px;
-border:none;
-}
-
-
-/* PROFILE STATS */
-
-.stats{
-display:flex;
-justify-content:space-around;
-margin-top:20px;
-text-align:center;
-}
-
-.stats h3{
-margin:0;
-font-size:18px;
-}
-
-.stats p{
-margin:0;
-font-size:13px;
-color:gray;
-}
-
-
-/* RED VERIFICATION TICK */
-
-.redtick{
-background:red;
-color:white;
-border-radius:50%;
-padding:2px 6px;
-font-size:12px;
-margin-left:5px;
-}
-
-
-/* BOTTOM NAVIGATION */
-
-.bottom{
-position:fixed;
-bottom:0;
-width:100%;
-background:white;
-display:flex;
-justify-content:space-around;
-padding:10px;
-border-top:1px solid #ddd;
-}
-
-.bottom a{
-text-decoration:none;
-font-size:22px;
-color:black;
-}
-
-
-/* CHAT */
-
-#chat{
-max-width:400px;
-margin:auto;
-padding:10px;
-}
-
-#chat div{
-background:white;
-padding:8px;
-margin:5px 0;
-border-radius:6px;
-box-shadow:0 0 3px rgba(0,0,0,0.1);
+/* 🔱 PROFILE NAME (USER DISPLAY) */
+#profileName, #userDisplay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    font-size: 22px;
+    font-weight: bold;
 }
