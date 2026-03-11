@@ -5,13 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Red Tick-inu vendulla cheriya style */
-        .redtick {
-            color: #ff0000;
-            font-weight: bold;
-            margin-left: 5px;
-            display: none; /* Default aayi hide cheyyunnu */
-        }
+        .redtick { color: #ff0000; font-weight: bold; margin-left: 5px; display: none; }
     </style>
 </head>
 
@@ -21,54 +15,45 @@
     <img id="profilePic" src="https://via.placeholder.com/120">
     <input type="file" onchange="uploadPic(event)">
     
-    <h2 id="userDisplay">@User <span id="verifiedTick" class="redtick">✔</span></h2>
+    <h2 id="profileName">@Loading...</h2>
 </div>
 
 <div class="stats">
-    <div>
-        <h3 id="postCount">0</h3>
-        <p>Posts</p>
-    </div>
-
-    <div>
-        <h3 id="followerCount">0</h3>
-        <p>Followers</p>
-    </div>
-
-    <div>
-        <h3>0</h3>
-        <p>Following</p>
-    </div>
+    <div><h3>0</h3><p>Posts</p></div>
+    <div><h3 id="profileFollowers">0</h3><p>Followers</p></div>
+    <div><h3>0</h3><p>Following</p></div>
 </div>
 
 <script src="app.js"></script>
 
 <script>
-    // Page load aakumpol user-e check cheyyaan
-    window.onload = function() {
-        let loggedUser = localStorage.getItem("currentUser");
-        let display = document.getElementById("userDisplay");
-        let tick = document.getElementById("verifiedTick");
-        let followers = document.getElementById("followerCount");
+    // 🔱 Sovereign Profile Fix Script
+    document.addEventListener("DOMContentLoaded", function() {
+        // App.js load aakan cheriya oru time delay kodukkunnu
+        setTimeout(() => {
+            let loggedUser = localStorage.getItem("currentUser");
+            let nameDisplay = document.getElementById("profileName");
+            let followers = document.getElementById("profileFollowers");
 
-        if (loggedUser) {
-            // User-inte peru kaanikkan
-            display.innerHTML = "@" + loggedUser + ' <span id="verifiedTick" class="redtick">✔</span>';
-            
-            // 🔱 DIAMOND LOGIC: Founder-u maathram Red Tick & 100M
-            if (loggedUser === "AiraAdam") {
-                document.getElementById("verifiedTick").style.display = "inline";
-                followers.innerText = "100M";
+            if (loggedUser) {
+                // User-inte peru set cheyyunnu
+                nameDisplay.innerHTML = `@${loggedUser} <span id="profileTick" class="redtick">✔</span>`;
+                
+                // Founder check
+                if (loggedUser === "AiraAdam") {
+                    document.getElementById("profileTick").style.display = "inline";
+                    followers.innerText = "100M";
+                } else {
+                    document.getElementById("profileTick").style.display = "none";
+                    followers.innerText = "0";
+                }
             } else {
-                // Mattu users-inu Red Tick undavilla, 0 followers aayirikkum
-                document.getElementById("verifiedTick").style.display = "none";
-                followers.innerText = "0";
+                // User illa enkil mathram login page-ilekku
+                console.log("No user found, staying for debug...");
+                // window.location.href = "index.html"; // Ithu temporary aayi comment cheythu, error check cheyyan
             }
-        } else {
-            // Login cheythittillenghil login page-ilekku ayakkaam
-            window.location.href = "index.html";
-        }
-    };
+        }, 100); 
+    });
 </script>
 
 </body>
