@@ -1,86 +1,35 @@
-/* 🔱 1. PROFILE HEADER (Pic-um Stats-um side-by-side aakkan) */
-.profile-header {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    max-width: 450px;
-    margin: auto;
-}
+/* 🔱 GLOBAL STYLES */
+body { margin: 0; font-family: -apple-system, sans-serif; background: #fafafa; color: #262626; }
 
-/* 🔱 2. PROFILE IMAGE */
-.profile-pic-container {
-    flex: 0 0 90px;
-    margin-right: 30px;
-}
+/* 🔱 LOGIN & SIGNUP (Nalla neat aakkan) */
+.login-container { width: 320px; margin: 100px auto; text-align: center; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+input { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #dbdbdb; border-radius: 6px; box-sizing: border-box; }
+button { background: #ff2a6d; color: white; border: none; padding: 10px; width: 100%; border-radius: 6px; cursor: pointer; font-weight: bold; }
 
-.profile-pic-container img {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #ff2a6d; /* Ninte aa pink border */
-    padding: 3px;
-    background: white;
-}
+/* 🔱 PROFILE HEADER (Side-by-side Logic) */
+.profile-header { display: flex; align-items: center; padding: 20px; max-width: 450px; margin: auto; }
+.profile-pic-container { flex: 0 0 90px; margin-right: 30px; }
+.profile-pic-container img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid #ff2a6d; padding: 3px; background: white; }
 
-/* 🔱 3. STATS SECTION (Followers side-il varaan) */
-.stats {
-    display: flex;
-    flex: 1;
-    justify-content: space-between;
-    text-align: center;
-}
+.stats { display: flex; flex: 1; justify-content: space-between; text-align: center; }
+.stats div { display: flex; flex-direction: column; }
+.stats h3 { margin: 0; font-size: 16px; font-weight: bold; }
+.stats p { margin: 0; font-size: 11px; color: gray; }
 
-.stats div {
-    display: flex;
-    flex-direction: column;
-}
-
-.stats h3 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: bold;
-    color: #262626;
-}
-
-.stats p {
-    margin: 0;
-    font-size: 11px;
-    color: gray;
-}
-
-/* 🔱 4. REAL SCALLOPED RED TICK (Instagram Style Blue-Red) */
+/* 🔱 THE SCALLOPED RED TICK (Legendary Shape) */
 .redtick {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 16px;
-    height: 16px;
-    background-color: red; /* Blue-inu pakaram Pure Red! */
-    color: white; 
-    font-size: 9px;
-    margin-left: 5px;
-    position: relative;
-    vertical-align: middle;
-    /* Real Scalloped Shape Logic */
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 16px; height: 16px; background-color: red; color: white; 
+    font-size: 9px; margin-left: 5px; position: relative;
     clip-path: polygon(100% 50%, 94.46% 65.14%, 94.46% 81.86%, 79.31% 87.39%, 69.13% 100%, 50% 98.41%, 30.87% 100%, 20.69% 87.39%, 5.54% 81.86%, 5.54% 65.14%, 0% 50%, 5.54% 34.86%, 5.54% 18.14%, 20.69% 12.61%, 30.87% 0%, 50% 1.59%, 69.13% 0%, 79.31% 12.61%, 94.46% 18.14%, 94.46% 34.86%);
 }
+.redtick::after { content: "✔"; }
 
-.redtick::after {
-    content: "✔"; /* Tick mark symbol */
-}
+/* 🔱 FEED & POSTS (Home page neat aakkan) */
+.feed { max-width: 500px; margin: auto; padding-bottom: 80px; }
+.post { background: white; border: 1px solid #dbdbdb; margin-bottom: 20px; border-radius: 8px; overflow: hidden; }
+.post-header { padding: 10px; font-weight: bold; display: flex; align-items: center; }
 
-/* 🔱 5. USERNAME INFO */
-.user-info {
-    max-width: 450px;
-    margin: auto;
-    padding: 0 20px;
-}
-
-#profileName {
-    margin: 10px 0 5px 0;
-    font-size: 18px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-}
+/* 🔱 BOTTOM NAV */
+.bottom-nav { position: fixed; bottom: 0; width: 100%; background: white; border-top: 1px solid #dbdbdb; display: flex; justify-content: space-around; padding: 12px 0; }
+.bottom-nav a { text-decoration: none; color: black; font-size: 20px; }
