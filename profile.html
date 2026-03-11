@@ -1,52 +1,75 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
-<title>Profile</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="style.css">
-
+    <title>Pixora - Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Red Tick-inu vendulla cheriya style */
+        .redtick {
+            color: #ff0000;
+            font-weight: bold;
+            margin-left: 5px;
+            display: none; /* Default aayi hide cheyyunnu */
+        }
+    </style>
 </head>
-
 
 <body>
 
 <div class="profile">
-
-<img id="profilePic" src="https://via.placeholder.com/120">
-
-<input type="file" onchange="uploadPic(event)">
-
-<h2>@AiraAdam <span class="redtick">✔</span></h2>
-
+    <img id="profilePic" src="https://via.placeholder.com/120">
+    <input type="file" onchange="uploadPic(event)">
+    
+    <h2 id="userDisplay">@User <span id="verifiedTick" class="redtick">✔</span></h2>
 </div>
-
 
 <div class="stats">
+    <div>
+        <h3 id="postCount">0</h3>
+        <p>Posts</p>
+    </div>
 
-<div>
-<h3>3</h3>
-<p>Posts</p>
+    <div>
+        <h3 id="followerCount">0</h3>
+        <p>Followers</p>
+    </div>
+
+    <div>
+        <h3>0</h3>
+        <p>Following</p>
+    </div>
 </div>
-
-<div>
-<h3>100M</h3>
-<p>Followers</p>
-</div>
-
-<div>
-<h3>0</h3>
-<p>Following</p>
-</div>
-
-</div>
-
 
 <script src="app.js"></script>
 
-</body>
+<script>
+    // Page load aakumpol user-e check cheyyaan
+    window.onload = function() {
+        let loggedUser = localStorage.getItem("currentUser");
+        let display = document.getElementById("userDisplay");
+        let tick = document.getElementById("verifiedTick");
+        let followers = document.getElementById("followerCount");
 
+        if (loggedUser) {
+            // User-inte peru kaanikkan
+            display.innerHTML = "@" + loggedUser + ' <span id="verifiedTick" class="redtick">✔</span>';
+            
+            // 🔱 DIAMOND LOGIC: Founder-u maathram Red Tick & 100M
+            if (loggedUser === "AiraAdam") {
+                document.getElementById("verifiedTick").style.display = "inline";
+                followers.innerText = "100M";
+            } else {
+                // Mattu users-inu Red Tick undavilla, 0 followers aayirikkum
+                document.getElementById("verifiedTick").style.display = "none";
+                followers.innerText = "0";
+            }
+        } else {
+            // Login cheythittillenghil login page-ilekku ayakkaam
+            window.location.href = "index.html";
+        }
+    };
+</script>
+
+</body>
 </html>
