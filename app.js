@@ -61,3 +61,17 @@ post.innerHTML=`
 feed.prepend(post)
 
 }
+function uploadPic(event){
+
+let reader=new FileReader()
+
+reader.onload=function(){
+
+let output=document.getElementById("profilePic")
+output.src=reader.result
+
+}
+
+reader.readAsDataURL(event.target.files[0])
+
+}
